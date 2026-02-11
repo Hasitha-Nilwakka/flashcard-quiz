@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  background-color: #42A5F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+.main-container {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  min-width: 450px;
+  min-height: 80vh;
+  max-height: 90vh;
+  overflow-y: scroll;
+}
+
+.logo-img {
+  max-width: 50px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.header-txt {
+  margin: 0;
+  font-family: "Oleo Script Swash Caps", system-ui;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 2.5rem;
+  color: #283592;
+}
+
+.add-q-btn {
+  background-color: #283592;
+  color: #FFFFFF;
+  font-family: "Comic Neue", cursive;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 20px;
+}
+
+footer button {
+  border-radius: 50%;
+  font-size: 1.25rem;
+  color: #283592;
+  border-color: #283592;
+  background-color: #FFFFFF;
+  padding: 7px 11px;
+}
+
+.play-btn {
+  background-color: #80FF72;
+  border: none;
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-family: "Comic Neue", cursive;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+}

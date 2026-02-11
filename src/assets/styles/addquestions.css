@@ -1,0 +1,98 @@
+.questions-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.qAndA {
+    color: #283592;
+    font-family: "Comic Neue", cursive;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.qAndA p {
+    margin: 0;
+}
+
+.qAndA textarea {
+    min-width: 290px;
+    min-height: 75px;
+    border-radius: 10px;
+    border: solid #283592 2px;
+    font-family: "Comic Neue", cursive;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #283592;
+}
+
+.questions-array {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+    font-family: "Comic Neue", cursive;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #283592;
+    margin-bottom: 10px;
+}
+
+.questions-array p {
+    margin: 0;
+}
+
+.question {
+    border: solid #F46036 1px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    min-width: 290px;
+    padding: 5px;
+    gap: 2px;
+}
+
+.q-q {
+  color: #F46036;
+  font-family: "Comic Neue", cursive;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.q-a {
+  color: #1B998B;
+  font-family: "Comic Neue", cursive;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.question-controls {
+    display: flex;
+    justify-content: right;
+    gap: 2px;
+}
+
+.question-controls button{
+    background-color: #FFFFFF;
+    border: solid grey 1px;
+    border-radius: 10px;
+    box-shadow: gray 0px 2px 5px;
+    padding: 2px 4px;
+}
+
+.icon-size {
+    width: 20px;
+}

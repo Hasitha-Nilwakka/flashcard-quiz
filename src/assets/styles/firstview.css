@@ -1,0 +1,33 @@
+.brain-img {
+  max-width: 275px;
+}
+
+.brain-img-div{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+main {
+  color: #283592;
+  font-family: "Comic Neue", cursive;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 40px;
+}
+
+main > ul {
+  margin: 25px 0 0 20px;
+  line-height: 2rem;
+  padding: 0;
+  font-weight: 400;
+  font-size: 1.25rem;
+}
+
+.btn-default-no-q-screen {
+  display: flex;
+  justify-content: center;
+}
