@@ -10,7 +10,7 @@ import { nanoid } from 'nanoid'
 
 export default function Addquestions() {
     const [inputValue, setInputValue] = useState({id: '',question: '', answer : ''})
-    const {toggleView, addQuestionToArray, deleteQuestionFromArray ,questionsArray} = useContext(MainContext)
+    const {addQuestionToArray, deleteQuestionFromArray ,questionsArray, removeQuestionFromArray} = useContext(MainContext)
 
     function handleformAction(formData) {
         const question = formData.get('question-input')
@@ -24,6 +24,17 @@ export default function Addquestions() {
         })
     }
 
+    function handleSaveAndCancelEdit() {
+        addQuestionToArray(inputValue.question, inputValue.answer, inputValue.id)
+        setInputValue({
+            id : '',
+            question : '',
+            answer : ''
+        })
+    }
+
+    
+
     function handlEditButtonClick(id) {
         const questionToEdit = questionsArray.filter(q => q.id === id)[0]
         setInputValue({
@@ -31,6 +42,7 @@ export default function Addquestions() {
             question : questionToEdit.question,
             answer : questionToEdit.answer
         })
+        removeQuestionFromArray(id)
     }
 
     useEffect(() => {
@@ -39,12 +51,12 @@ export default function Addquestions() {
 
     return (
         <div className="questions-container">
-            <Buttonplay />
+            {questionsArray.length > 0 ? <Buttonplay>Play Now</Buttonplay> : null}
             <form action={handleformAction} className='qAndA'>
                 <label htmlFor='question-input'>Question ?</label>
                 <textarea 
                     value={inputValue.question}
-                    onChange={(e) => setInputValue({id:'', question: e.target.value})}
+                    onChange={(e) => setInputValue(prevInputValue => ({id: prevInputValue.id, question: e.target.value, answer: prevInputValue.answer}))}
                     name="question-input" 
                     id="question-input" 
                     placeholder='e.g. Whats the capital of France?' 
@@ -53,7 +65,7 @@ export default function Addquestions() {
                 <label htmlFor='answer-input'>Answer</label>
                 <textarea
                     value={inputValue.answer}
-                    onChange={(e) => setInputValue({id: '',answer: e.target.value})}
+                    onChange={(e) => setInputValue(prevInputValue => ({id: prevInputValue.id, answer: e.target.value, question: prevInputValue.question}))}
                     name="answer-input" 
                     id="answer-input" 
                     placeholder='e.g. Paris' 
@@ -62,9 +74,9 @@ export default function Addquestions() {
                 <div>
                     {inputValue.id === '' ? 
                         <Buttonaddquestions>{inputValue.id === '' ? 'Add Question' : 'Save Changes' }</Buttonaddquestions> : 
-                        <button className='btn-save-edit' type='button'>Save Changes</button>
+                        <button className='btn-save-edit' onClick={handleSaveAndCancelEdit} type='button'>Save Changes</button>
                     }
-                    {inputValue.id === '' ? null : <button type='button' className='btn-cancel-edit'>Cancel</button>}
+                    {inputValue.id === '' ? null : <button onClick={handleSaveAndCancelEdit} type='button' className='btn-cancel-edit'>Cancel</button>}
                 </div>
             </form>
             {questionsArray.length > 0 ? <div className='questions-array'>
