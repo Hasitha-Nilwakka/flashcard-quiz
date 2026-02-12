@@ -1,0 +1,34 @@
+.score-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    font-family: "Comic Neue", cursive;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: #283592;
+}
+
+.score-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score-screen p {
+    margin: 0;
+}
+
+.ss-score {
+    color: #F46036;
+}
+
+.ss-cheer {
+    color: #1B998B;
+}
+
+.ss-img {
+    width: 200px;
+}

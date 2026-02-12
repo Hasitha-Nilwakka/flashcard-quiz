@@ -1,0 +1,87 @@
+.game-play-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.flash-card-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.flash-card {
+    background-color: #42A5F5;
+}
+
+.control-btn {
+    border: none;
+    background-color: #FFFFFF;
+    text-align: justify;
+}
+.control-icon {
+    width: 50px;
+}
+
+.flip-icon {
+    width: 100px;
+}
+
+.flash-card {
+    border: none;
+    border-radius: 10px;
+    width: 290px;
+    height: 300px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flash-card label {
+    font-family: "Comic Neue", cursive;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+}
+
+.question-play-screen {
+    color: #F46036;
+    font-family: "Comic Neue", cursive;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25rem;
+    max-width: 290px;
+}
+
+.answer-controls {
+    display: flex;
+    max-width: 290px;
+    margin-top: 20px;
+    margin-bottom: 125px;
+    gap: 10px;
+}
+
+.answer-controls button {
+    width: 140px;
+    padding: 10px 20px;
+    font-family: "Comic Neue", cursive;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    border: none;
+}
+
+.btn-correct {
+    background-color: #80FF72;
+    color: black;
+}
+
+.btn-wrong {
+    background-color: #F33C08;
+    color: #FFFFFF;
+}

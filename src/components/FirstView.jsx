@@ -16,7 +16,7 @@ export default function FirstView() {
                 </ul>
             </main>
             <div className='btn-default-no-q-screen'>
-                <Buttonaddquestions />
+                <Buttonaddquestions>Add Questions</Buttonaddquestions>
             </div>
             <div className='brain-img-div'>
                 <img src={brain} alt="image of brain graphic" className='brain-img' />
