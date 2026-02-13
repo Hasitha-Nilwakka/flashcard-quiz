@@ -2,8 +2,12 @@ import { useContext } from "react"
 import { MainContext } from "../App"
 
 export default function Buttonplay({children}) {
-    const {toggleView} = useContext(MainContext)
+    const {toggleView, resetAllQuestions} = useContext(MainContext)
+    function handleClick() {
+        toggleView('game_play_view')
+        resetAllQuestions()
+    }
     return (
-        <button className="play-btn" onClick={() => toggleView('game_play_view')}>{children}</button>
+        <button className="play-btn" onClick={handleClick}>{children}</button>
     )
 }

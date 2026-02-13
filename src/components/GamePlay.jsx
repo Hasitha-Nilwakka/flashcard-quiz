@@ -7,33 +7,54 @@ import { MainContext } from '../App'
 import { useContext, useState } from 'react'
 
 export default function GamePlay() {
-    const {questionsArray} = useContext(MainContext)
+    const {questionsArray, toggleView, markQuestion} = useContext(MainContext)
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-    const [isAnswerHidden, setIsAnswerHidden] = useState(false)
+    const [isAnswerHidden, setIsAnswerHidden] = useState(true)
+
+    function toggleFlashCard() {
+        setIsAnswerHidden(prevHidden => !prevHidden)
+    }
+
+    function moveCards(direction) {
+        if (direction === 'prev') {
+            if (currentQuestionIndex - 1 >= 0) {
+                setCurrentQuestionIndex(prevIndex => prevIndex -1)
+            }
+        } else if (direction === 'next') {
+            if (currentQuestionIndex + 1 <= (questionsArray.length -1)) {
+                setCurrentQuestionIndex(prevIndex => prevIndex +1)
+            } else {
+                toggleView('score_view')
+            }
+        }
+        setIsAnswerHidden(true)
+    }
+
+    function handleAnswerControlButtonsclick(result, id) {
+        markQuestion(result, id)
+        moveCards('next')
+    }
     return (
         <div className='game-play-view'>
             <div className='question-play-screen'>
-                <p>What is the most common surname in the USA ?</p>
+                <p className='q-num'>{`Question ${currentQuestionIndex + 1} of ${questionsArray.length}`}</p>
+                <p>{questionsArray[currentQuestionIndex].question}</p>
             </div>
             <div className='flash-card-container'>
-                <button className='control-btn'>
+                <button className='control-btn' onClick={() => moveCards('prev')}>
                 <img src={prevIcon} alt="previous icon" className='control-icon'/>
                 </button>
-                <div className='flash-card' role='button'>
-                    <img src={flipIcon} alt="flip icon" className='flip-icon'/>
-                    <label>Flip the card</label>
+                <div className= {isAnswerHidden ? 'flash-card' : 'answer-reveal' } role='button' onClick={toggleFlashCard}>
+                    {isAnswerHidden ? <img src={flipIcon} alt="flip icon" className='flip-icon'/> : null}
+                    <label>{isAnswerHidden ? 'Flip the card' : questionsArray[currentQuestionIndex].answer}</label>
                 </div>
-                <button className='control-btn'>
+                <button className='control-btn' onClick={() => moveCards('next')}>
                     <img src={nextIcon} alt="next icon" className='control-icon'/> 
                 </button>
             </div>
             <div className='answer-controls'>
-                {isAnswerHidden ? null : 
-                    <>
-                        <button className='btn-correct'>Correct</button>
-                        <button className='btn-wrong'>Wrong</button>
-                    </>
-                }
+                <button className={isAnswerHidden ? 'btn-correct hidden' : 'btn-correct'} onClick={() => handleAnswerControlButtonsclick(true, questionsArray[currentQuestionIndex].id)}>Correct</button>
+                <button className={isAnswerHidden ? 'btn-wrong hidden' : 'btn-wrong'} onClick={() => handleAnswerControlButtonsclick(false, questionsArray[currentQuestionIndex].id)}>Wrong</button>
             </div>
             <Buttonaddquestions>Manage Questions</Buttonaddquestions>
         </div>

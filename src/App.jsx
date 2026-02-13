@@ -27,6 +27,25 @@ function App() {
       })
   }
 
+  function markQuestion(result, id) {
+    setQuestionsArray(prevArray => {
+      return prevArray.map(q => {
+        return q.id !== id ? q : {
+          ...q,
+          isCorrect : result
+        }
+      })
+    })
+  }
+
+  function resetAllQuestions() {
+    setQuestionsArray(prevArray => {
+      return prevArray.map(q => {
+        return {q, isCorrect : false}
+      })
+    })
+  }
+
   function removeQuestionFromArray(id) {
     setQuestionsArray(prevArray => prevArray.filter(q => id !== q.id))
   }
@@ -50,7 +69,7 @@ function App() {
         <img src={logo} alt="two playing cards logo" className='logo-img'/>
         <h1 className='header-txt'>FlashCard Quiz</h1>
       </header>
-      <MainContext.Provider value={{toggleView, addQuestionToArray, deleteQuestionFromArray,removeQuestionFromArray,questionsArray}}>
+      <MainContext.Provider value={{toggleView, addQuestionToArray, deleteQuestionFromArray,removeQuestionFromArray,questionsArray, markQuestion, resetAllQuestions}}>
         {view === 'first_view' && <FirstView />}
         {view === 'add_questions_view' && <Addquestions />}
         {view === 'game_play_view' && <GamePlay />}
