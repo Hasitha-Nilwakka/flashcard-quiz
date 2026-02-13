@@ -4,7 +4,7 @@ import FirstView from './components/FirstView'
 import Addquestions from './components/Addquestions'
 import GamePlay from './components/GamePlay'
 import Score from './components/Score'
-import { useState, createContext } from 'react'
+import { useState, createContext, useEffect } from 'react'
 
 const MainContext = createContext()
 
@@ -41,7 +41,7 @@ function App() {
   function resetAllQuestions() {
     setQuestionsArray(prevArray => {
       return prevArray.map(q => {
-        return {q, isCorrect : false}
+        return {...q, isCorrect : false}
       })
     })
   }
@@ -50,12 +50,9 @@ function App() {
     setQuestionsArray(prevArray => prevArray.filter(q => id !== q.id))
   }
 
-  function deleteQuestionFromArray(id) {
-    setQuestionsArray(prevArray => {
-      return prevArray.filter(q => q.id !== id)
-    })
-  }
-
+  useEffect(() => {
+    localStorage.setItem('lsQArray',JSON.stringify(questionsArray))
+  }, [questionsArray])
   //view state & functions
   const [view, setView] = useState(questionsArray.length > 0 ? 'game_play_view' : 'first_view')
 
@@ -66,10 +63,22 @@ function App() {
   return (
     <div className='main-container'>
       <header>
-        <img src={logo} alt="two playing cards logo" className='logo-img'/>
-        <h1 className='header-txt'>FlashCard Quiz</h1>
+        <img 
+          src={logo} alt="two playing cards logo" 
+          className='logo-img'
+        />
+        <h1 
+          className='header-txt'
+        >FlashCard Quiz</h1>
       </header>
-      <MainContext.Provider value={{toggleView, addQuestionToArray, deleteQuestionFromArray,removeQuestionFromArray,questionsArray, markQuestion, resetAllQuestions}}>
+      <MainContext.Provider value={
+        {toggleView, 
+        addQuestionToArray,
+        removeQuestionFromArray,
+        questionsArray, 
+        markQuestion, 
+        resetAllQuestions}}
+      >
         {view === 'first_view' && <FirstView />}
         {view === 'add_questions_view' && <Addquestions />}
         {view === 'game_play_view' && <GamePlay />}

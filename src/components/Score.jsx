@@ -31,7 +31,11 @@ export default function Score() {
     return (
         <div className="score-screen">
             <p>All Questions Finished</p>
-            <img src={alldoneImg} alt="cartoon fox holding a star" className="ss-img"/>
+            <img 
+                src={alldoneImg} 
+                alt="cartoon fox holding a star" 
+                className="ss-img"
+            />
             <div className="score-section">
                 <p>Your Score</p>
                 <p className="ss-score">{`${correctAnswers.length} / ${questionsArray.length}`}</p>

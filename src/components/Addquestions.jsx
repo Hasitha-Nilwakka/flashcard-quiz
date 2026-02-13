@@ -4,13 +4,13 @@ import Buttonaddquestions from "./Buttonaddquestions"
 import deleteicon from '../assets/delete.svg'
 import editicon from '../assets/edit.svg'
 import { MainContext } from '../App'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { nanoid } from 'nanoid'
 
 
 export default function Addquestions() {
     const [inputValue, setInputValue] = useState({id: '',question: '', answer : ''})
-    const {addQuestionToArray, deleteQuestionFromArray ,questionsArray, removeQuestionFromArray} = useContext(MainContext)
+    const {addQuestionToArray ,questionsArray, removeQuestionFromArray} = useContext(MainContext)
 
     function handleformAction(formData) {
         const question = formData.get('question-input')
@@ -45,10 +45,6 @@ export default function Addquestions() {
         removeQuestionFromArray(id)
     }
 
-    useEffect(() => {
-        localStorage.setItem('lsQArray',JSON.stringify(questionsArray))
-    }, [questionsArray])
-
     return (
         <div className="questions-container">
             {questionsArray.length > 0 ? <Buttonplay>Play Now</Buttonplay> : null}
@@ -56,7 +52,12 @@ export default function Addquestions() {
                 <label htmlFor='question-input'>Question ?</label>
                 <textarea 
                     value={inputValue.question}
-                    onChange={(e) => setInputValue(prevInputValue => ({id: prevInputValue.id, question: e.target.value, answer: prevInputValue.answer}))}
+                    onChange={(e) => setInputValue(prevInputValue => (
+                        {
+                            id: prevInputValue.id, 
+                            question: e.target.value, 
+                            answer: prevInputValue.answer
+                        }))}
                     name="question-input" 
                     id="question-input" 
                     placeholder='e.g. Whats the capital of France?' 
@@ -65,7 +66,12 @@ export default function Addquestions() {
                 <label htmlFor='answer-input'>Answer</label>
                 <textarea
                     value={inputValue.answer}
-                    onChange={(e) => setInputValue(prevInputValue => ({id: prevInputValue.id, answer: e.target.value, question: prevInputValue.question}))}
+                    onChange={(e) => setInputValue(prevInputValue => (
+                        {
+                            id: prevInputValue.id, 
+                            answer: e.target.value, 
+                            question: prevInputValue.question
+                        }))}
                     name="answer-input" 
                     id="answer-input" 
                     placeholder='e.g. Paris' 
@@ -74,9 +80,18 @@ export default function Addquestions() {
                 <div>
                     {inputValue.id === '' ? 
                         <Buttonaddquestions>{inputValue.id === '' ? 'Add Question' : 'Save Changes' }</Buttonaddquestions> : 
-                        <button className='btn-save-edit' onClick={handleSaveAndCancelEdit} type='button'>Save Changes</button>
+                        <button 
+                            className='btn-save-edit' 
+                            onClick={handleSaveAndCancelEdit} 
+                            type='button'
+                        >Save Changes</button>
                     }
-                    {inputValue.id === '' ? null : <button onClick={handleSaveAndCancelEdit} type='button' className='btn-cancel-edit'>Cancel</button>}
+                    {inputValue.id === '' ? null : 
+                        <button 
+                            onClick={handleSaveAndCancelEdit} 
+                            type='button' 
+                            className='btn-cancel-edit'
+                        >Cancel</button>}
                 </div>
             </form>
             {questionsArray.length > 0 ? <div className='questions-array'>
@@ -87,8 +102,20 @@ export default function Addquestions() {
                             <p className='q-q'>{q.question}</p>
                             <p className='q-a'>{q.answer}</p>
                             <div className='question-controls'>
-                                <button onClick={() => handlEditButtonClick(q.id)}><img src={editicon} alt="edit button" className='icon-size'/></button>
-                                <button onClick={() => deleteQuestionFromArray(q.id)}><img src={deleteicon} alt="delete button" className='icon-size'/></button>
+                                <button onClick={() => handlEditButtonClick(q.id)}>
+                                    <img 
+                                        src={editicon} 
+                                        alt="edit button" 
+                                        className='icon-size'
+                                    />
+                                </button>
+                                <button onClick={() => removeQuestionFromArray(q.id)}>
+                                    <img 
+                                        src={deleteicon} 
+                                        alt="delete button" 
+                                        className='icon-size'
+                                    />
+                                </button>
                             </div>
                         </div>
                     )

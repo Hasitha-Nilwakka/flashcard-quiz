@@ -19,7 +19,11 @@ export default function FirstView() {
                 <Buttonaddquestions>Add Questions</Buttonaddquestions>
             </div>
             <div className='brain-img-div'>
-                <img src={brain} alt="image of brain graphic" className='brain-img' />
+                <img 
+                    src={brain} 
+                    alt="image of brain graphic" 
+                    className='brain-img' 
+                />
             </div>
         </>
     )

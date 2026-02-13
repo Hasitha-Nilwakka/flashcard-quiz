@@ -8,6 +8,9 @@ export default function Buttonplay({children}) {
         resetAllQuestions()
     }
     return (
-        <button className="play-btn" onClick={handleClick}>{children}</button>
+        <button 
+            className="play-btn" 
+            onClick={handleClick}
+        >{children}</button>
     )
 }
